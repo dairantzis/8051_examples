@@ -1,0 +1,122 @@
+;
+;**************************************************************
+;*** CRD89C51AD1T REGISTER DEFINITION 
+;**************************************************************
+;
+;*** ISP SPECIFIC SFR LOCATIONS (CONSTANTS)***
+                                                        ;
+SYSCON		        EQU 0BFH			;WDR,n/u,n/u,n/u,DFLASHE,IAPE,XRAME,ALEI
+                                                        ;
+TAKEY                   EQU 0F7H                        ;Timed Access Key Register
+IFCON                   EQU 08FH                        ;Interface Control Register
+ISPFC                   EQU 0E4H                        ;ISP Flash control
+ISPFD                   EQU 0E3H                        ;ISP Flash Data
+ISPFAL                  EQU 0E2H                        ;ISP Flash Address Low
+ISPFAH                  EQU 0E1H                        ;ISP Flash Address High
+                                                        ;
+                                                        ;Timer2 registers
+TH2                     EQU 0CDH                        ;
+TL2                     EQU 0CCH                        ;
+RCAP2H		        EQU 0CBH                        ;**Alternative defns
+RCAP2L		        EQU 0CAH                        ;
+
+CRCH                    EQU 0CBH                        ;**Alternative defns
+CRCL                    EQU 0CAH                        ;
+CCL1                    EQU 0C2H                        ;
+CCH1                    EQU 0C3H                        ;
+CCL2                    EQU 0C4H                        ;
+CCH2                    EQU 0C5H                        ;
+CCL3                    EQU 0C6H                        ;
+CCH3                    EQU 0C7H                        ;
+T2CON                   EQU 0C8H                        ;
+TF2		        EQU 0CFH			;T2CON.7(0C8H+7) Timer2 overflow bit
+T2MOD		        EQU 0C9H                        ;
+CCC0N                   EQU 0C9H                        ;Compare/capture control
+CCEN                    EQU 0C1H                        ;Compare/capture enable register
+CCEN2                   EQU 0D1H                        ;Compare/capture enable register
+                                                        ;
+                                                        ;
+P4                      EQU 0E8H                        ;
+P5                      EQU 0D8H                        ;
+                                                        ;
+RCON                    EQU 086H                        ;Internal RAM control register: becomes the MS byte of the external RAM accessed in a MOVX @Ri,A instruction.
+                                                        ;
+                                                        ;UART control registers
+S0CON                   EQU 098H                        ;Serial port 0 ctrl reg
+S0BUF                   EQU 099H                        ;Serial port 0 shift reg
+S0RELL                  EQU 0AAH                        ;Serial port 0 reload reg low
+S0RELH                  EQU 0BAH                        ;Serial port 0 reload reg high
+S1CON                   EQU 09BH                        ;Serial port 1 ctrl reg
+;TI1		BIT S1CON.1               		;Serial port 1 transmit in process flag
+;RI1		BIT S1CON.0               		;Serial port 1 received character is available
+S1BUF                   EQU 09CH        		;Serial port 1 shift reg
+S1RELL                  EQU 09DH        		;Serial port 1 reload reg low
+S1RELH                  EQU 0BBH        		;Serial port 1 reload reg high
+                                                        ;
+DPL1                    EQU 084H        		;Data pointer 1
+DPH1                    EQU 085H        		;
+                                                        ;
+AUX                     EQU 091H        		;BRGS,P4CC,P4SPI,P4UR1,P4IIC,P0KBI,P2PWM,DPS 
+AUX2                    EQU 092H        		;P42CC 
+                                                        ;
+                                                        ;Interrupt handling
+IEN0                    EQU 0A8H        		;Enhanced Interrupt control register 0
+IEN1                    EQU 0B8H        		;Enhanced Interrupt control register 1
+IEN2                    EQU 09AH        		;Enhanced Interrupt control register 2
+IP0                     EQU 0A9H        		;Enhanced Interrupt Priority control register 0
+IP1                     EQU 0B9H        		;Enhanced Interrupt Priority control register 1
+IRCON                   EQU 0C0H			;Interrupt request control register 0:
+                                                        ;  Bit 7: EXF2: Timer 2 external reloads flag. Must be cleared by software.
+                                                        ;  Bit 6: TF2: Timer 2 overflows flag. Must be cleared by software.
+                                                        ;  Bit 5: IICIF: IIC interrupt flag.
+                                                        ;  Bit 4: LVIIF: LVI interrupt flag.
+                                                        ;  Bit 3: KBIIF: KBI interrupt flag.
+                                                        ;  Bit 2: ADCIF: A/D converter end interrupt flag.
+                                                        ;  Bit 1: SPIIF: SPI interrupt flag.
+                                                        ;  Bit 0: PWMIF: PWM interrupt flag. Must be cleared by software.
+IRCON2                  EQU 097H		        ;Interrupt request control register 2:
+                                                        ;  Bit 7,6,5,4,3 are NC. 
+                                                        ;  Bit 2:CmpIF (Comparator interrupt flag)
+                                                        ;  Bit 1: RTC IF (RTC interrupt flag)
+                                                        ;  Bit 0: NC.
+                                                        ;
+                                                        ;Watchdog control
+WDTC                    EQU 0B6H			;Watchdog control register
+WDTK                    EQU 0B7H			;Watchdog refresh key register
+                                                        ;
+                                                        ;GPIO mode control registers
+P0M0                    EQU 0D2H			;
+P0M1                    EQU 0D3H			;
+P1M0                    EQU 0D4H			;
+P1M1                    EQU 0D5H			;
+P2M0                    EQU 0D6H			;
+P2M1                    EQU 0D7H			;
+P3M0                    EQU 0DAH			;
+P3M1                    EQU 0DBH			;
+P4M0                    EQU 0DCH			;
+P4M1                    EQU 0DDH			;
+P5M0                    EQU 0DEH			;
+P5M1                    EQU 0DFH			;
+                                                        ;
+                                                        ;Reset ctrl registers
+LVC                     EQU 0E6H			;LVI_EN,X,LVRXE
+SWRES                   EQU 0E7H			;
+                                                        ;
+                                                        ;RTC ctrl registers
+RTCDATA                 EQU 09FH			;
+RTCADDR                 EQU 09EH			;
+                                                        ;
+                                                        ;OpAmp & Comparator ctrl registers
+OpPin                   EQU 0F6H			;
+Cmp0CON                 EQU 0FEH			;
+Cmp1CON                 EQU 0FFH			;
+                                                        ;
+ADCC1                   EQU 0ABH                        ;ADC module registers
+ADCC2                   EQU 0ACH                        ;
+ADCDH                   EQU 0ADH                        ;Result byte MSB
+ADCDL                   EQU 0AEH                        ;
+ADCCS                   EQU 0AFH                        ;ADC module clock source
+ADCIF                   BIT IRCON.2                     ;
+                                                        ;
+                                                        ;ÔÝëïò, êáé ôù Èåþ Äüîá...
+                                                        
