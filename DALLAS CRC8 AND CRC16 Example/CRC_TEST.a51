@@ -269,6 +269,7 @@ TX_CHAR:                                                ;Send the character thro
                         JNB TI,$			;and wait for the transmission process to be completed.
                         CLR TI				;Release the serial transmission cct.
                         RET				;Return to the caller.
+			NOP				;NOP inserted as example
 ;                                                       ;
 ;--------1---------2----+----3---------4---------5------+--6---------7---------8---------9---------A---------B---------C---------D---------E---------F
 ;* External subroutines are included here 
