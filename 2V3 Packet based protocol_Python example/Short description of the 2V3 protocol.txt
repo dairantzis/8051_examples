@@ -1,0 +1,11 @@
+The 2V3 packet based protocol is used in most of my MCU projects to communicate data to/from the MCU.
+Each packet consists of:
+1. a header: byte 0x02
+2. a byte holding the length of the packet payload:
+     Payload length does not include the overhead bytes
+     of head, length, sum and tail.
+3. a byte holding the sum of the packet payload
+4. a tail: byte 0x03
+
+The payload can carry any bytes, not just text.
+The significance of the payload contents depends on the application.
